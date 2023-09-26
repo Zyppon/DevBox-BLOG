@@ -1,5 +1,5 @@
 {%load static%}
-<html lang="en">
+<html lang="fr">
 <head>
     <head>
         <meta charset="UTF-8">
@@ -47,9 +47,15 @@
               <a href="/" class="navbar-item is-active is-size-5">
                 Accueil
               </a>
+              {%if user.is_authentificated%}
               <a href="{% url 'login' %}" class="navbar-item is-size-5">
                 Sign In
               </a>
+              {%else%}
+              <a href="{% url 'login' %}" class="navbar-item is-size-5">
+                Sign In
+              </a>
+              {%endif %}
               <a class="navbar-item is-size-5">
                 Courses
               </a>
@@ -67,7 +73,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                Copyright (c) - Next Media Blog
+              &copy; NextMedia Blog. All Rights Reserved.
             </p>
         </div>
     </footer>

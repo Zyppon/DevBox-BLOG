@@ -1,0 +1,186 @@
+{%load static%}
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%block title%}Register |{%endblock%}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+  </head>
+
+  <body>
+    
+      <a href="/" class="navbar-item is-active is-size-5">
+        < Retour
+      </a>
+    
+    <form method="post" action="{% url 'register' %}" class="container">
+      {% csrf_token %}
+ 
+      <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+          <div class="columns">
+            <div class="column left">
+              <h1 class="title is-1">NextMedia Blog</h1>
+              <h2 class="subtitle colored is-4">Inscrivez-vous maintenant pour recevoir des nouvelles exclusives</h2>
+              <p>Rejoignez notre communauté et commencez à découvrir les histoires, les astuces et les informations uniques les plus intéressantes dans notre domaine. Inscrivez-vous maintenant et entrez dans notre monde de connaissances et d'inspiration.</p>
+            </div>
+            <div class="column right has-text-centered">
+              <h1 class="title is-4">Sign up aujourd'hui</h1>
+              <p class="description">Assurez-vous de créer un mot de passe fort avec un minimum de 8 caractères contenant des lettres, des chiffres et des symboles</p>
+              <form>
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-medium custom-style" type="text" placeholder="Name" name="username" value="{{ form.username.value }}">
+
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-medium" type="email" placeholder="Email" name="email" value="{{ form.email.value }}">
+                  </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                      <input class="input is-medium" type="password" placeholder="mot de passe" name="password1" value="{{ form.password1.value }}">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                      <input class="input is-medium" type="password" placeholder="confirme le mot de passe" name="password2" value="{{ form.password2.value }}">
+                    </div>
+                </div>
+                <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+                <br />
+                <small><em>vérifiez nos <a>règles</a> avant de créer un nouveau compte.</em></small>
+              </form>
+            </div>
+          </div>
+        </div>
+       <!--<div class="column is-8 is-offset-2">
+          <br>
+          <nav class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <span class="icon">
+                  <i class="fab fa-twitter"></i>
+                </span> &emsp;
+                <span class="icon">
+                  <i class="fab fa-facebook"></i>
+                </span> &emsp;
+                <span class="icon">
+                  <i class="fab fa-instagram"></i>
+                </span> &emsp;
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span> &emsp;
+                <span class="icon">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+            <div class="level-right">
+              <small class="level-item" style="color: var(--textLight)">
+                &copy; NextMedia Blog. All Rights Reserved.
+              </small>
+            </div>
+          </nav>
+        </div> -->
+        <div class=" level-centered">
+          <small class="level-item" style="color: var(--textLight)">
+            &copy; NextMedia Blog. All Rights Reserved.
+          </small>
+        </div>
+      </div>
+    </form>
+  </body>
+  <style>
+    :root {
+      --brandColor: hsl(166, 67%, 51%);
+      --background: rgb(247, 247, 247);
+      --textDark: hsla(0, 0%, 0%, 0.66);
+      --textLight: hsla(0, 0%, 0%, 0.33);
+    }
+
+    body {
+      background: var(--background);
+      height: 100vh;
+      color: var(--textDark);
+    }
+
+    .field:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    .register {
+      margin-top: 10rem;
+      background: white;
+      border-radius: 10px;
+    }
+
+    .left,
+    .right {
+      padding: 4.5rem;
+    }
+
+    .left {
+      border-right: 5px solid var(--background);
+    }
+
+    .left .title {
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .left .colored {
+      color: var(--brandColor);
+      font-weight: 500;
+      margin-top: 1rem !important;
+      letter-spacing: -1px;
+    }
+
+    .left p {
+      color: var(--textLight);
+      font-size: 1.15rem;
+    }
+
+    .right .title {
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .right .description {
+      margin-top: 1rem;
+      margin-bottom: 1rem !important;
+      color: var(--textLight);
+      font-size: 1.15rem;
+    }
+
+    .right small {
+      color: var(--textLight);
+    }
+
+    input {
+      font-size: 1rem;
+    }
+
+    input:focus {
+      border-color: var(--brandColor) !important;
+      box-shadow: 0 0 0 1px var(--brandColor) !important;
+    }
+
+    .fab,
+    .fas {
+      color: var(--textLight);
+      margin-right: 1rem;
+    }
+
+  </style>
+
+</html>

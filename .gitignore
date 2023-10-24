@@ -1,3 +1,4 @@
 db.sqlite3
-.__pycache__/
+.nextmedia_app/__pycache__/
+.nextmedia_project/__pycache__/
 

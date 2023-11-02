@@ -32,6 +32,9 @@
             <div class="column right has-text-centered">
               <h1 class="title is-4">Sign up aujourd'hui</h1>
               <p class="description">Assurez-vous de créer un mot de passe fort avec un minimum de 8 caractères contenant des lettres, des chiffres et des symboles</p>
+              {% if form.errors.email %}
+              <div class="error-message">{{ form.errors.email }}</div>
+              {% endif %}
               <form>
                 <div class="field">
                   <div class="control">

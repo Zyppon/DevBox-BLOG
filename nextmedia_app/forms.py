@@ -16,3 +16,15 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+    def clean_email(self):
+       email = self.cleaned_data.get('email')
+       try:
+           match = User.objects.get(email=email)
+       except User.DoesNotExist:
+           return email
+       raise forms.ValidationError('Email address already registered.')
+       
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)

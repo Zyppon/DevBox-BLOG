@@ -1,1 +1,1 @@
-![NextMedia](./static/images/nextmedia-logo.png)
+![NextMedia](./images/nextmedia-logo.png)

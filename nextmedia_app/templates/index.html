@@ -1,5 +1,13 @@
 {%extends 'base.html'%}
+{%load static%}
 {%block title%}Accueil |{%endblock%}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 {%block content%}
-<h1>Front Page</h1>
+
+{%if user.is_authenticated%}
+<div class="typewriter">
+    <h1>Bonjour {{user.username}}</h1>
+  </div>
+{%endif%}
+  
 {%endblock%}

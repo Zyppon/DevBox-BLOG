@@ -27,7 +27,8 @@
         <div class="container">
           <div class="navbar-brand">
             <a class="navbar-item" href="#">
-              <img src="{% static 'images/logo.png' %}" alt="Logo NextMedia" class="principal-logo">
+            <img src="{% static 'images/nextmedia-logo.png' %}" href="{% url 'index' %}" alt="NextMedia" class="principal-logo">
+            
             </a>
             <span class="navbar-burger burger" data-target="navbarMenu">
               <span></span>
@@ -44,13 +45,20 @@
                         <i class="fa fa-search"></i>
                       </span>
                     </div>
-              <a href="/" class="navbar-item is-active is-size-5">
+              <a href="/" class="navbar-item is-active is-size-5 is-light">
                 Accueil
               </a>
               {% if user.is_authenticated %}
-              <a href="{% url 'logout' %}" class="navbar-item is-size-5">
-                Log Out
-              </a>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  <ion-icon name="settings"></ion-icon> Paramètres
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="#">Mon Compte</a>
+                  <a class="navbar-item" href="#">Add Post</a>
+                  <a class="navbar-item" href="{%url 'logout'%}">Deconnexion</a>
+                </div>
+              </div>
  
               {% else %}
               <a href="{% url 'login' %}" class="navbar-item is-size-5">
@@ -78,13 +86,13 @@
             </p>
         </div>
     </footer>
-
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
       // Get all "navbar-burger" elements
       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
       // Check if there are any navbar burgers
       if ($navbarBurgers.length > 0) {
 
@@ -104,7 +112,11 @@
         });
       }
 
+
+
     });
+
+
   </script>
 </body>
 

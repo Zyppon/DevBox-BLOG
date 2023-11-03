@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-   # username = forms.CharField(label='Username', max_length=15, required=True, initial='')
 
     class Meta:
         model = User
@@ -23,7 +22,7 @@ class NewUserForm(UserCreationForm):
            match = User.objects.get(email=email)
        except User.DoesNotExist:
            return email
-       raise forms.ValidationError('Email address already registered.')
+       raise forms.ValidationError("L'adresse email est déjà enregistrée.")
        
 class LoginForm(forms.Form):
     email = forms.EmailField()

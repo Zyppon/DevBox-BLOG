@@ -1,1 +1,2 @@
-![image](https://github.com/Zyppon/NextMedia-BLOG/assets/88236849/41589a52-f148-4364-84e5-b17b5b5314ec)
+![image](https://github.com/Zyppon/NextMedia-BLOG/assets/88236849/1f4ef5ce-e3b1-4eb0-b5d2-32ab0673bb20)
+

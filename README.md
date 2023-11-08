@@ -1,2 +1,3 @@
-![image](https://github.com/Zyppon/NextMedia-BLOG/assets/88236849/1f4ef5ce-e3b1-4eb0-b5d2-32ab0673bb20)
+![image](![image](https://github.com/Zyppon/NextMedia-BLOG/assets/88236849/b6bb7527-5023-405e-bf5b-4ce7a678afa4)
+)
 

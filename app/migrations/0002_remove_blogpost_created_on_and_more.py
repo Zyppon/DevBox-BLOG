@@ -7,7 +7,7 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nextmedia_app', '0001_initial'),
+        ('app', '0001_initial'),
     ]
 
     operations = [

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path , include
-from nextmedia_app.views import *
+from app.views import *
 
 
 

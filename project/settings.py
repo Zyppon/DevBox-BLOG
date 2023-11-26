@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -41,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
    # 'django.contrib.auth.forms', 
     'app',
-   # 'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
+
 
 #CRISPY_TEMPLATE_PACK = 'bulma'
 
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#CKEDITOR SETTINGS
+STATIC_ROOT = '/static/'
 
 
 # Internationalization
@@ -129,8 +132,12 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 #REGISTER_URL = 'register'
 #REGISTER_REDIRECT_URL = 'index'
+STATIC_ROOT = 'static/'
+STATIC_MEDIA = '/media/'
+MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CKEDITOR_UPLOAD_PATH = 'uploads/'

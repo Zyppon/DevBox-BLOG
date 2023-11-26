@@ -1,9 +1,8 @@
 from django.contrib import admin
-from django.urls import path , include
+from django.urls import path , include  ,re_path
 from app.views import *
-
-
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
    path('admin/', admin.site.urls),
@@ -14,6 +13,7 @@ urlpatterns = [
    #path('accounts/', include('django.contrib.auth.urls')),
    path('register/',register , name="register"),
    path('logout/', logout, name='logout'),
-   path('add_post',create_post,name='add_post')
-   
-]
+   path('add_post',create_post,name='add_post'),
+   path('post/<int:post_id>/', blog_detail, name='blog_detail'),
+   path('ckeditor',include('ckeditor_uploader.urls'))
+]+ static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

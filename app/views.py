@@ -1,4 +1,4 @@
-from django.shortcuts import  render, redirect
+from django.shortcuts import  render, redirect , get_object_or_404
 from django.contrib.auth import authenticate ,login
 from django.contrib import messages
 from .forms import NewUserForm , LoginForm , PostForm
@@ -71,5 +71,10 @@ def create_post(request):
     else:
         form = PostForm()
 
-    return render(request, 'add_post.html', {'form': form})
+    return render(request, 'blog_post/add_post.html', {'form': form})
+
+
+def blog_detail(request , post_id):
+    post = get_object_or_404(BlogPost , id=post_id)
+    return render(request , 'blog_post/blog_detail.html' , {'post':post})
 

@@ -1,14 +1,16 @@
 from django.db import models
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
-
+from django_summernote.fields import SummernoteTextField
+from markdownx.models import MarkdownxField
 
 class BlogPost(models.Model):
 
     title = models.CharField(max_length=200)
     body = RichTextUploadingField()
-   # content = models.TextField(max_length=999999999)
+   # body = RichTextUploadingField()
+   # body = SummernoteTextField()
+    body = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
 
 

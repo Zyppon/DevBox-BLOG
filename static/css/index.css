@@ -53,3 +53,18 @@
     flex-direction:column;
     background-color: #000000;
   }
+
+
+  /* Stiluri implicite pentru CKEditor */
+.cke_editable {
+  text-align: center; /* Aliniere text la mijloc */
+}
+
+/* Alte stiluri specifice pot fi adăugate aici */
+
+.cke_editable img {
+  max-width: 100%; /* Imaginele nu vor depăși lățimea containerului */
+  height: auto;    /* Păstrează proporțiile imaginii */
+  width: 300px;     /* Lățimea maximă a imaginii */
+  /* Alte stiluri specifice pentru imagini pot fi adăugate aici */
+}

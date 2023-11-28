@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
+{%load blog_extras %}
 {% block content %}
   <h1>{{ post.title }}</h1>
-  <p>{{ post.body| safe }}</p>
+  <p>{{ post.body| convert_markdown|safe}}</p>
 {% endblock %}

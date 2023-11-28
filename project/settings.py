@@ -41,7 +41,9 @@ INSTALLED_APPS = [
    # 'django.contrib.auth.forms', 
     'app',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'django_summernote',
+    'markdownx',
 ]
 
 
@@ -141,3 +143,55 @@ MEDIA_ROOT = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'extraPlugins': ','.join(['codesnippet']),  # Adaugă codesnippet în lista de plugin-uri
+        # Alte opțiuni CKEditor pot fi adăugate aici
+    },
+}
+
+# settings.py
+
+#SUMMERNOTE_CONFIG = {
+   # 'iframe': True,
+   # 'summernote': {
+    #    'width': '100%',
+    #    'height': '480',
+     #   'toolbar': [
+       #     ['style', ['style']],
+       #     ['font', ['bold', 'italic', 'underline', 'clear']],
+       #     ['para', ['ul', 'ol', 'paragraph']],
+       #     ['height', ['height']],
+       #     ['insert', ['link', 'picture', 'video', 'table', 'hr']],
+       #     ['view', ['fullscreen', 'codeview']],
+       #     ['help', ['help']],
+       # ],
+       # 'codemirror': {
+       #     'theme': 'default',  # Alege un stil de cod pentru blocurile de cod
+       #     'lineNumbers': True,  # Adaugă numerele de linii pentru blocurile de cod
+       #     'mode': 'htmlmixed',  # Specifică modul pentru evidențierea sintaxei
+       # },
+       # 'prettifyHtml': False,
+       # 'lazyLoad': True,
+       # 'insertTableMaxSize': {
+       #     'col': 10,
+       #     'row': 10,
+       # },
+  #  },
+#}
+
+# settings.py
+
+# Adaugă aceste linii pentru a configura django-markdownx
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra',
+    'markdown.extensions.codehilite',
+    'markdown.extensions.toc',
+]
+MARKDOWNX_MARKDOWN_EXTENSION_CONFIGS = {
+    'markdown.extensions.codehilite': {
+        'css_class': 'highlight',
+        'linenums': True,
+    },
+}

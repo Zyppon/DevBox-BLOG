@@ -11,10 +11,31 @@
 {%endif%}
 
 {% for post in posts %}
-<h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
 
-<p>Date posted: {{ post.date_posted }}</p>
+<section class="hero ">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+          <figure class="image is-16by9">
+            <img src="../images/first-post.png" alt="">
+          </figure>
+        </div>
+      </div>
 
+      <section class="section">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+            <div class="content is-medium">
+              <h2 class="subtitle is-4">{{post.date_posted}}</h2>
+              <h1 class="title"><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h1>
+              <p>Intro</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="is-divider"></div>
 
 
 {% endfor %}

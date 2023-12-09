@@ -40,10 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
    # 'django.contrib.auth.forms', 
     'app',
-    'ckeditor',
-    'ckeditor_uploader',
-    'django_summernote',
-    'markdownx',
 ]
 
 

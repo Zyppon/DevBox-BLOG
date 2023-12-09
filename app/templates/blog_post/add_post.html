@@ -1,12 +1,79 @@
 {%extends 'base.html'%}
 {%block content %}
-<h1>Create a Post</h1>
 
-<form method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-    {{form.media}}
-    {{form.as_p}}
-    <button type="submit">Create</button>
-</form>
-<h1>This Editor Is Temporally , we try to make it better and simple to use !</h1>
-{%endblock content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container {
+  margin: auto;
+  width:100%;
+  padding: 10px;
+  text-align:center;
+  
+}
+
+p {
+    font-weight:bold;
+}
+
+h1 {
+   font-weight:bold;
+   font-size:30px;
+}
+</style>
+<body>
+    <div class="container">
+    <h1>Create a Post</h1>
+    <br>
+    <div id="file-js-example" class="file has-name">
+        <label class="file-label">
+          <input class="file-input" type="file" name="resume">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            No file uploaded
+          </span>
+        </label>
+      </div>
+    <button  id="codeblock-btn" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
+    <button  class="button is-medium is-info">B</button>
+    <br>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <input class="input is-large" type="text" value="{{ form.title.value|default:"" }}" name="title" placeholder="Title">
+        <br>
+        <br>
+        <textarea id="bodyArea" style="resize:none;" class="textarea" placeholder="10 lines of textarea" rows="10" value="{{ form.body.value|default:"" }}" name="body"></textarea>
+        <br>
+        <button type="submit" class="button is-large is-info">Large</button>
+    </form>
+    <p>This Editor Is Temporally , we try to make it better and simple to use !</p>
+    </div>
+    {%endblock content%}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+
+const fileInput = document.querySelector('#file-js-example input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js-example .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+   
+</script>
+</body>
+</html>

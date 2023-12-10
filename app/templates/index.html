@@ -1,10 +1,14 @@
 {%extends 'base.html'%}
 {%load static%}
-{%block title%}{%endblock%}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{%block content%}
-
-{%if user.is_authenticated%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{%block title%}{%endblock%}</title>
+</head>
+<body>
+  {%block content%}
+  {%if user.is_authenticated%}
 <div class="typewriter">
     <h1>Bonjour {{user.username}}</h1>
   </div>
@@ -18,7 +22,7 @@
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <figure class="image is-16by9">
-            <img src="../images/first-post.png" alt="">
+            <img src="{{post.image.value}}" alt="{{post.title}}">
           </figure>
         </div>
       </div>
@@ -41,3 +45,5 @@
 {% endfor %}
   
 {%endblock%}
+</body>
+</html>

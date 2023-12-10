@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 {%load blog_extras %}
-{% block content %}
-  <h1>{{ post.title }}</h1>
-  <p>{{ post.body| convert_markdown|safe}}</p>
-{% endblock %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% block content %}
+  <section class="hero ">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+            <figure class="image is-16by9">
+              <img src="{{post.image}}" alt="blog image"> 
+            </figure>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="columns">
+            <div class="column is-8 is-offset-2">
+              <div class="content is-medium">
+                <h2 class="subtitle is-4">{{post.date_posted}}</h2>
+                <div class="control"><span class="tag is-info is-uppercase ">story</span></div>
+
+                <h1 class="title">{{post.title}}</h1>
+                <p>{{ post.body| convert_markdown|safe}}
+                  </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endblock %}
+</body>
+</html>

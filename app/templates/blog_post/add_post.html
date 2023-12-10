@@ -1,38 +1,41 @@
 {%extends 'base.html'%}
-{%block content %}
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-
-<style>
-    .container {
-  margin: auto;
-  width:100%;
-  padding: 10px;
-  text-align:center;
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/bulma-divider.min.css">
+    <style>
+      .container {
+    margin: auto;
+    width:100%;
+    padding: 10px;
+    text-align:center;
+    
+  }
   
-}
-
-p {
-    font-weight:bold;
-}
-
-h1 {
-   font-weight:bold;
-   font-size:30px;
-}
-</style>
+  p {
+      font-weight:bold;
+  }
+  
+  h1 {
+     font-weight:bold;
+     font-size:30px;
+  }
+  </style>
+</head>
 <body>
+  {%block content %}
     <div class="container">
     <h1>Create a Post</h1>
     <br>
     <div id="file-js-example" class="file has-name">
         <label class="file-label">
-          <input class="file-input" type="file" name="resume">
+          <input class="file-input" value="{{ form.image.value|default:"" }}" name="image" type="file">
           <span class="file-cta">
             <span class="file-icon">
               <i class="fas fa-upload"></i>
@@ -46,26 +49,31 @@ h1 {
           </span>
         </label>
       </div>
-    <button  id="codeblock-btn" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
+    
+    <button  id="btn" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
     <button  class="button is-medium is-info">B</button>
     <br>
     <br>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" action="{% url 'add_post' %}" enctype="multipart/form-data">
         {%csrf_token%}
         <input class="input is-large" type="text" value="{{ form.title.value|default:"" }}" name="title" placeholder="Title">
         <br>
         <br>
-        <textarea id="bodyArea" style="resize:none;" class="textarea" placeholder="10 lines of textarea" rows="10" value="{{ form.body.value|default:"" }}" name="body"></textarea>
+        <textarea id="textarea" style="resize:none;" class="textarea" placeholder="10 lines of textarea" rows="10" value="{{ form.body.value|default:'' }}" name="body"></textarea>
         <br>
-        <button type="submit" class="button is-large is-info">Large</button>
+        <button type="submit" class="button is-large is-info">Create</button>
     </form>
     <p>This Editor Is Temporally , we try to make it better and simple to use !</p>
     </div>
-    {%endblock content%}
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
 
+document.getElementById("btn").addEventListener('click', () => {
+        let textarea = document.getElementById("textarea");
+        textarea.value += '\n```                ```';
+    });
+    
 const fileInput = document.querySelector('#file-js-example input[type=file]');
   fileInput.onchange = () => {
     if (fileInput.files.length > 0) {
@@ -75,5 +83,6 @@ const fileInput = document.querySelector('#file-js-example input[type=file]');
   }
    
 </script>
+{%endblock content%}
 </body>
 </html>

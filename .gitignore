@@ -1,4 +1,2 @@
 db.sqlite3
-.nextmedia_app/__pycache__/
-.nextmedia_project/__pycache__/
-
+project/.env

@@ -10,13 +10,6 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/bulma-divider.min.css">
     <style>
-      .container {
-    margin: auto;
-    width:100%;
-    padding: 10px;
-    text-align:center;
-    
-  }
   
   p {
       font-weight:bold;
@@ -25,53 +18,60 @@
   h1 {
      font-weight:bold;
      font-size:30px;
+     font-family: monospace;
   }
   </style>
 </head>
 <body>
   {%block content %}
-    <div class="container">
-    <h1>Create a Post</h1>
+    <div class="container has-text-centered">
+    <h1 style="     font-weight:bold; font-size:30px;">Create a Post</h1>
     <br>
-    <div id="file-js-example" class="file has-name">
-        <label class="file-label">
-          <input class="file-input" value="{{ form.image.value|default:"" }}" name="image" type="file">
-          <span class="file-cta">
-            <span class="file-icon">
-              <i class="fas fa-upload"></i>
-            </span>
-            <span class="file-label">
-              Choose a file…
-            </span>
-          </span>
-          <span class="file-name">
-            No file uploaded
-          </span>
-        </label>
-      </div>
-    
-    <button  id="btn" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
-    <button  class="button is-medium is-info">B</button>
+    <button  id="btn-code" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
+    <button id="btn-bold-text" class="button is-medium is-info">B</button>
     <br>
     <br>
     <form method="post" action="{% url 'add_post' %}" enctype="multipart/form-data">
         {%csrf_token%}
+        <div id="file-js-example" class="file has-name is-flex is-align-items-center is-justify-content-center">
+          <label class="file-label">
+            <input class="file-input" value="{{form.image.value}}" name="image" type="file">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name">
+              No file uploaded
+            </span>
+          </label>
+        </div>
+        <br>
+        <br>
         <input class="input is-large" type="text" value="{{ form.title.value|default:"" }}" name="title" placeholder="Title">
         <br>
         <br>
         <textarea id="textarea" style="resize:none;" class="textarea" placeholder="10 lines of textarea" rows="10" value="{{ form.body.value|default:'' }}" name="body"></textarea>
         <br>
-        <button type="submit" class="button is-large is-info">Create</button>
+        <button  type="submit" class="button is-large is-info">Create</button>
     </form>
-    <p>This Editor Is Temporally , we try to make it better and simple to use !</p>
+    <p style="font-weight:bold;">This Editor Is Temporally , we try to make it better and simple to use !</p>
     </div>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
 
-document.getElementById("btn").addEventListener('click', () => {
+document.getElementById("btn-code").addEventListener('click', () => {
         let textarea = document.getElementById("textarea");
         textarea.value += '\n```                ```';
+    });
+
+document.getElementById("btn-bold-text").addEventListener('click', () => {
+        let textarea = document.getElementById("textarea");
+        textarea.value += '\n**    **';
     });
     
 const fileInput = document.querySelector('#file-js-example input[type=file]');

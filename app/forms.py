@@ -34,3 +34,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
         fields = ['title','body','image']
+
+
+class PasswordResetForm(forms.Form):
+    email = forms.EmailField(label='Adresa de Email')

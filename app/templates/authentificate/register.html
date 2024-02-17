@@ -15,18 +15,17 @@
 
   <body>
     
-    <form method="post" action="{% url 'register' %}" class="container">
-      {% csrf_token %}
+    <section method="post" action="{% url 'register' %}" class="container">
  
       <div class="columns is-multiline">
         <div class="column is-8 is-offset-2 register">
-          <a href="/" class="return-button">
+          <a href="/" class="return-button has-background-link">
             <ion-icon name="arrow-back-circle"></ion-icon> Retour
           </a>
           <div class="columns">
             <div class="column left">
               <h1 class="title is-1">DevBox Community</h1>
-              <h2 class="subtitle colored is-4">Inscrivez-vous maintenant pour recevoir des nouvelles exclusives</h2>
+              <h2 class="subtitle colored is-4 has-text-link">Inscrivez-vous maintenant pour recevoir des nouvelles exclusives</h2>
               <p>Rejoignez notre communauté et commencez à découvrir les histoires, les astuces et les informations uniques les plus intéressantes dans notre domaine. Inscrivez-vous maintenant et entrez dans notre monde de connaissances et d'inspiration.</p>
             </div>
             <div class="column right has-text-centered">
@@ -35,7 +34,9 @@
               {% if form.errors.email %}
               <div class="error-message">{{ form.errors.email }}</div>
               {% endif %}
-              <form>
+              
+              <form method="post" action="{% url 'register' %}" class="container">
+                {% csrf_token %}
                 <div class="field">
                   <div class="control">
                     <input class="input is-medium custom-style" type="text" placeholder="Name" name="username" value="{{ form.username.value|default:"" }}">
@@ -59,14 +60,14 @@
                       <input class="input is-medium" type="password" placeholder="confirme le mot de passe" name="password2" value="{{ form.password2.value|default:"" }}">
                     </div>
                 </div>
-                <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+                <button class="button is-block is-info is-fullwidth is-medium">Submit</button>
                 <br />
                 <small><em>vérifiez nos <a>règles</a> avant de créer un nouveau compte.</em></small>
               </form>
             </div>
           </div>
         </div>
-       <!--<div class="column is-8 is-offset-2">
+        <div class="column is-8 is-offset-2">
           <br>
           <nav class="level">
             <div class="level-left">
@@ -90,24 +91,19 @@
             </div>
             <div class="level-right">
               <small class="level-item" style="color: var(--textLight)">
-                &copy; NextMedia Blog. All Rights Reserved.
+                &copy; DevBox Community. All Rights Reserved.
               </small>
             </div>
           </nav>
-        </div> -->
-        <div class=" level-centered">
-          <small class="level-item" style="color: var(--textLight)">
-            &copy; NextMedia Blog. All Rights Reserved.
-          </small>
         </div>
       </div>
-    </form>
+    </section>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>
   <style>
     :root {
-      --brandColor: hsl(166, 67%, 51%);
+      --brandColor: #3e56c4;
       --background: rgb(247, 247, 247);
       --textDark: hsla(0, 0%, 0%, 0.66);
       --textLight: hsla(0, 0%, 0%, 0.33);
@@ -124,7 +120,7 @@
     }
 
     .register {
-      margin-top: 10rem;
+      margin-top: 3rem;
       background: white;
       border-radius: 10px;
     }

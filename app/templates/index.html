@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{%block title%}{%endblock%}</title>
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/bulma-divider.min.css">
 </head>
 <body>
   {%block content%}
@@ -13,19 +17,21 @@
     <h1>Bonjour {{user.username}}</h1>
   </div>
 {%endif%}
-
 {% for post in posts %}
-
-<section class="hero ">
+<section class="hero">
   <div class="hero-body">
     <div class="container">
       <div class="columns">
         <div class="column is-8 is-offset-2">
+          {% if post.image %}
           <figure class="image is-16by9">
-            <img src="{{post.image.value}}" alt="{{post.title}}">
+            <img src="{{post.image.url}}" alt="{{post.title}}">
           </figure>
+          {% endif %}
         </div>
       </div>
+    </section>
+
 
       <section class="section">
         <div class="columns">
@@ -34,14 +40,12 @@
               <h2 class="subtitle is-4">{{post.date_posted}}</h2>
               <h1 class="title"><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h1>
               <p>Intro</p>
+              <p>Created by {{ post.author.username }}</p>
             </div>
           </div>
         </div>
       </section>
-
       <div class="is-divider"></div>
-
-
 {% endfor %}
   
 {%endblock%}

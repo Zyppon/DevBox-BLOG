@@ -11,8 +11,12 @@ urlpatterns = [
    path('login/',login_user , name="login"),
    path('register/',register , name="register"),
    path('logout/', logout, name='logout'),
-   path('add_post',create_post,name='add_post'),
+   path('add_post/',create_post,name='add_post'),
    path('post/<int:post_id>/', blog_detail, name='blog_detail'),
+   path('settings/' , user_settings_panel , name='user_settings'),
+   path('activate/<uidb64>/<token>/', activate_account, name='activate_account'),
+  # path('reset_password/<uidb64>/<token>/' , reset_password , name='reset_password')
+
 ]
 
 urlpatterns +=  static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

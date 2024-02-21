@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes 
+from django.utils.encoding import force_bytes , force_str
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_decode
@@ -62,26 +62,26 @@ def login_user(request):
 def register(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
-        if form.is_valid(): # Salvează utilizatorul în baza de date
+        if form.is_valid(): 
             username = form.cleaned_data.get('username')
             email=form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1') 
             user = authenticate(request, username=username, email=email , password=password)
-            user = form.save(commit=False)  # Salvăm utilizatorul fără a-l comite în baza de date încă
-            user.is_active = False  # Setăm utilizatorul ca inactiv până când confirmă prin email
+            user = form.save(commit=False)  # Nous enregistrons l'utilisateur sans l'inscrire encore dans la base de données
+            user.is_active = False  # Nous définissons l'utilisateur comme inactif jusqu'à ce qu'il confirme par e-mail
             user.save()
 
             token_generator = default_token_generator
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = token_generator.make_token(user)
 
-            # Construim URL-ul pentru activarea contului
+            # Nous construisons l'URL pour l'activation du compte
             current_site = get_current_site(request)
             activation_link = f"http://{current_site.domain}/activate/{uid}/{token}/"
 
-            # Construim mesajul de email pentru activarea contului
+            # Nous construisons le message pour l'activation du compte
             
-            email_subject = 'Activate your account'
+            email_subject = 'DevBox - Activez votre compte'
             email_message = render_to_string('authentificate/account_activation_email.html', {
                 'user': user,
                 'activation_link': activation_link,
@@ -91,11 +91,11 @@ def register(request):
             send_mail(
                 email_subject,
                 extract_html_message,
-                settings.EMAIL_HOST_USER,  # Adresa ta de email
-                [email],  # Adresa de email a utilizatorului
+                settings.EMAIL_HOST_USER,  # Votre adresse du EMail pour HOST
+                [email],  # L'adrese du utilisateur
                 fail_silently=False,
             )
-            messages.success(request, "Registered successfully. Check your email for activation link.")
+            messages.success(request, "Enregistré avec succès. Vérifiez votre e-mail pour le lien d'activation.")
             return redirect('login') 
     else:
         form = NewUserForm()
@@ -104,55 +104,76 @@ def register(request):
 
 def activate_account(request, uidb64, token):
     try:
-        uid = urlsafe_base64_decode(uidb64).decode()  # Decodifică uidb64
+        uid = urlsafe_base64_decode(uidb64).decode()  # Decodification uidb64
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
     if user is not None and default_token_generator.check_token(user, token):
-        # Activarea contului
+        # Activation du Compte
         user.is_active = True
         user.save()
-        messages.success(request, "Your account has been successfully activated. Please log in.")
+        messages.success(request, "Votre compte a été activé avec succès. Veuillez vous connecter.")
         return redirect('login')
     else:
-        # Token invalid sau utilizator inexistent
+        # Token non valide ou utilisateur inexistant
         messages.error(request, "Invalid activation link.")
         return redirect('login')
 
 @login_required
 def home(request):
     if not request.user.is_active:
-        # Utilizatorul nu a verificat contul, deci redirecționează-l către o altă pagină sau afișează un mesaj de eroare
-        messages.error(request, "Your account is not activated. Please activate your account first.")
-        return redirect('login')  # Redirecționează către o altă pagină care afișează un mesaj sau instrucțiuni pentru activare
+        messages.error(request, "Votre compte n'est pas activé. Veuillez d'abord activer votre compte.")
+        return redirect('login')  
     else:
-        # Utilizatorul este autentificat și contul este activat, deci afișează pagina de home normal
+        
         return render(request, 'index.html')
 
 
-#def reset_password(request, uidb64, token):
-    #if request.method == 'POST':
-        #form = PasswordResetForm(request.POST)
-        #if form.is_valid():
-           # email = form.cleaned_data.get('email')
-            # Verifică dacă adresa de email există în baza de date
-           # if User.objects.filter(email=email).exists():
-               # reset_link = request.build_absolute_uri('/reset_password/{}/{}/'.format(uidb64, token))
-               # subject = 'DevBox Reset Password'
-               # message = render_to_string('authentificate/reset.txt', {'reset_link': reset_link})
-               # send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
-                # Redirect către o pagină care confirmă trimiterea email-ului de resetare
-               # return render(request, 'authentificate/password_reset_confirmation.html')
-           # else:
-                # Adresa de email nu există în baza de date
-                # Afișează un mesaj de eroare pe aceeași pagină sau gestionează în alt mod
-               # return render(request, 'authentificate/password_reset.html', {'form': form, 'error_message': "Email doesn't exist."})
-   # else:
-      #  form = PasswordResetForm()
-    # Returnează pagina de resetare a parolei pentru metoda GET
-  #  return render(request, 'authentificate/password_reset.html', {'form': form})
+def reset_password_done(request):
+    return render(request , 'authentificate/reset_password_done.html')
 
+def reset_password_confirm(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            # Procesează resetarea parolei aici
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            if new_password == confirm_password:
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, "Your password has been successfully reset.")
+                return redirect('reset_password_done')
+            else:
+                messages.error(request, "Passwords do not match. Please try again.")
+        return render(request, 'authentificate/reset_password_confirm.html', {'uidb64': uidb64, 'token': token})
+    else:
+        messages.error(request, 'The reset password link is invalid. Please request a new one.')
+        return redirect('index') 
+
+
+
+def reset_password(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            token = default_token_generator.make_token(user)
+            reset_link = request.build_absolute_uri(f'/reset_password_confirm/{urlsafe_base64_encode(force_bytes(user.pk))}/{token}/')
+            subject = "DevBox Reset Password"
+            message = render_to_string('authentificate/reset.html' , {'reset_link': reset_link})
+            extract_reset_message = strip_tags(message)
+            send_mail(subject, extract_reset_message, settings.EMAIL_HOST_USER, [email])
+            messages.success(request, "An Email has been sent to your Inbox.")
+        else:
+            messages.error(request, "This Email isn't registered in our database. PLease Try Again.")
+    return render(request, 'authentificate/password_reset.html')
 
 
 

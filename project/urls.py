@@ -16,6 +16,9 @@ urlpatterns = [
    path('settings/' , user_settings_panel , name='user_settings'),
    path('activate/<uidb64>/<token>/', activate_account, name='activate_account'),
   # path('reset_password/<uidb64>/<token>/' , reset_password , name='reset_password')
+  path('reset_password/' , reset_password , name='reset_password'),
+  path('reset_password_confirm/<uidb64>/<token>/' , reset_password_confirm , name='reset_password_confirm'),
+  path('reset_password_done/', reset_password_done, name='reset_password_done')
 
 ]
 

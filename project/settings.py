@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import cloudinary
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,11 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
    # 'django.contrib.auth.forms', 
     'app',
+    'cloudinary',
+    'cloudinary_storage'
     
 ]
 
+#Cloudinary Config 
 
-#CRISPY_TEMPLATE_PACK = 'bulma'
+cloudinary.config(
+    cloud_name=os.environ.get('cloud_name'),
+    api_key=os.environ.get('api_key'),
+    api_secret=os.environ.get('api_secret'),
+    secure=True,
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,8 +147,7 @@ MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-from dotenv import load_dotenv
-load_dotenv()
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"

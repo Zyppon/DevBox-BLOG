@@ -1,0 +1,22 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/devbox-logo.png' %}" type="image/icon type">
+    <title>Welcome Back , Thanks For Logging Back.</title>
+</head>
+<body>
+    <h1>Activate Your Account</h1>
+
+     <p>Hello {{ user.username }},</p>
+     <p>Thank you for Logging Again! Please click on the following link to activate your account:</p>
+        
+     <p>If you did not request this, please <a href="{%url 'reset_password'%}">change your password </a> as soon possible.</p>
+
+     <p>Best regards, <br> DevBox Community Team</p>
+</body>
+</html>

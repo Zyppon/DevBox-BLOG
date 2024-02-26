@@ -26,13 +26,12 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import reverse
 
 
+from cloudinary.uploader import upload
+
 
 def index(request):
   posts = BlogPost.objects.all()
   return render(request , 'index.html' , {'posts':posts})
-
-def privacy(request):
-  return render(request , 'privacy.html')
 
 def login_user(request):
     if request.method == 'POST':
@@ -48,6 +47,20 @@ def login_user(request):
 
         if user is not None and  user.check_password(password2):
             auth.login(request, user)
+            email_subject_login = 'DevBox - Thanks For logging Back.'
+            email_message_login = render_to_string('authentificate/account_login_email.html', {
+                'user': user,
+                
+            })
+
+            extract_login_message = strip_tags(email_message_login)
+            send_mail(
+                email_subject_login,
+                extract_login_message,
+                settings.EMAIL_HOST_USER, 
+                [email],  
+                fail_silently=False,
+            )
             return redirect('index')
         else:
            messages.error(request, "Email ou mot de passe invalide.")
@@ -131,7 +144,7 @@ def home(request):
 
 
 def reset_password_done(request):
-    return render(request , 'authentificate/reset_password_done.html')
+    return render(request , 'authentificate/resetpassword/reset_password_done.html')
 
 def reset_password_confirm(request, uidb64, token):
     try:
@@ -142,19 +155,19 @@ def reset_password_confirm(request, uidb64, token):
 
     if user is not None and default_token_generator.check_token(user, token):
         if request.method == 'POST':
-            # Procesează resetarea parolei aici
+            # Processing Password
             new_password = request.POST.get('new_password')
             confirm_password = request.POST.get('confirm_password')
             if new_password == confirm_password:
                 user.set_password(new_password)
                 user.save()
-                messages.success(request, "Your password has been successfully reset.")
+                messages.success(request, "Votre mot de passe a été réinitialisé avec succès.")
                 return redirect('reset_password_done')
             else:
-                messages.error(request, "Passwords do not match. Please try again.")
-        return render(request, 'authentificate/reset_password_confirm.html', {'uidb64': uidb64, 'token': token})
+                messages.error(request, "Les mots de passe ne correspondent pas. Veuillez réessayer.")
+        return render(request, 'authentificate/resetpassword/reset_password_confirm.html', {'uidb64': uidb64, 'token': token})
     else:
-        messages.error(request, 'The reset password link is invalid. Please request a new one.')
+        messages.error(request, "Le lien de réinitialisation du mot de passe n'est pas valide. Veuillez en demander un nouveau.")
         return redirect('index') 
 
 
@@ -167,13 +180,13 @@ def reset_password(request):
             token = default_token_generator.make_token(user)
             reset_link = request.build_absolute_uri(f'/reset_password_confirm/{urlsafe_base64_encode(force_bytes(user.pk))}/{token}/')
             subject = "DevBox Reset Password"
-            message = render_to_string('authentificate/reset.html' , {'reset_link': reset_link})
+            message = render_to_string('authentificate/resetpassword/reset.html' , {'reset_link': reset_link})
             extract_reset_message = strip_tags(message)
             send_mail(subject, extract_reset_message, settings.EMAIL_HOST_USER, [email])
-            messages.success(request, "An Email has been sent to your Inbox.")
+            messages.success(request, "Un e-mail a été envoyé dans votre boîte de réception.")
         else:
-            messages.error(request, "This Email isn't registered in our database. PLease Try Again.")
-    return render(request, 'authentificate/password_reset.html')
+            messages.error(request, "Cet e-mail n'est pas enregistré dans notre base de données. Veuillez réessayer.")
+    return render(request, 'authentificate/resetpassword/password_reset.html')
 
 
 
@@ -206,3 +219,6 @@ def user_settings_panel(request):
 
 def courses_download(request):
     return render(request , 'courses.html')
+
+def privacy(request):
+    return render(request , 'privacy.html')

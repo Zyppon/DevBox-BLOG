@@ -37,4 +37,5 @@ class PostForm(forms.ModelForm):
 
 
 class PasswordResetForm(forms.Form):
-    email = forms.EmailField(label='Adresa de Email')
+    email = forms.EmailField(label='Email')
+

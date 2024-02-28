@@ -39,3 +39,10 @@ class PostForm(forms.ModelForm):
 class PasswordResetForm(forms.Form):
     email = forms.EmailField(label='Email')
 
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Your Name', max_length=100)
+    email = forms.EmailField(label='Your Email')
+    message = forms.CharField(label='Message', widget=forms.Textarea)
+    category = forms.ChoiceField(choices=[('general-questions', 'General Questions'), ('sugestions-feedback', 'Sugestions & Feedback'),('report-bugs','Report Bugs'),('colab-partner', 'Collaborations & partnerships'), ('report-user-content', 'Report Content , Users or issues'),('others','Others...')])
+

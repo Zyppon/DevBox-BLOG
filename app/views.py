@@ -1,7 +1,7 @@
 from django.shortcuts import  render, redirect , get_object_or_404
 from django.contrib.auth import authenticate ,login
 from django.contrib import messages
-from .forms import NewUserForm , LoginForm , PostForm , PasswordResetForm
+from .forms import NewUserForm , LoginForm , PostForm , PasswordResetForm , ContactForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -19,7 +19,7 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 
 
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives , EmailMessage
 from django.utils.html import strip_tags
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -220,5 +220,27 @@ def user_settings_panel(request):
 def courses_download(request):
     return render(request , 'courses.html')
 
-def privacy(request):
-    return render(request , 'privacy.html')
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            category = form.cleaned_data['category']
+            subject = f"Contact - {category} from {name}"
+            EmailMessage(
+               subject,
+               message,
+               email, # Send from (your website)
+               [settings.EMAIL_HOST_USER], # Send to (your admin email)
+               [],
+               reply_to=[email] # Email from the form to get back to
+           ).send()
+
+            messages.success(request, "Message sent successfully")
+            return redirect('index')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
+

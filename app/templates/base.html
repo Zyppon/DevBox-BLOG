@@ -77,6 +77,16 @@
               <a  href="{% url 'courses_download' %}" class="navbar-item is-size-5">
                 Courses
               </a>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  <ion-icon name="settings"></ion-icon> About Us
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="{%url 'contact'%}">Contact</a>
+                  <a class="navbar-item" href="{%url 'add_post'%}">News</a>
+                  <a class="navbar-item" href="/">FAQ</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -89,6 +99,25 @@
         </div>
     </section>
     <footer class="footer">
+      <div class="level-center">
+        <div class="level-item">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span> 
+          <span class="icon">
+            <i class="fab fa-facebook"></i>
+          </span> 
+          <span class="icon">
+            <i class="fab fa-instagram"></i>
+          </span> 
+          <span class="is-size-2">
+            <a href="https://github.com/Zyppon"><ion-icon name="logo-github"></ion-icon></a>
+          
+          <span class="is-size-2">
+            <a href="{%url 'contact'%}"><ion-icon name="mail"></ion-icon></a>
+          </span>
+        </div>
+      </div>
         <div class="content has-text-centered">
             <p>
               &copy; DevBox Community. All Rights Reserved.

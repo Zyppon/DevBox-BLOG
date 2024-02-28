@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/bulma-divider.min.css">
+    <style>
+  
+  p {
+      font-weight:bold;
+  }
+  
+  h1 {
+     font-weight:bold;
+     font-size:30px;
+     font-family: monospace;
+  }
+  </style>
+</head>
+<body>
+  {%block content %}
+    <div class="container has-text-centered">
+    <h1 style="     font-weight:bold; font-size:30px;">Contact DevBox Community</h1>
+    <form method="post" action="{% url 'contact' %}" enctype="multipart/form-data" name="ContactForm">
+        {% csrf_token %}
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" value="{{ form.name.value|default:'' }}" name="name" placeholder="Your Name">
+            </div>
+        </div>
+        <div class="field">
+        <select class="input is-medium" name="category" id="category">
+            <option value="general-questions">General Questions</option>
+            <option value="sugestions-feedback">Sugestions & Feedback</option>
+            <option value="report-bugs">Report Bugs</option>
+            <option value="colab-partner">Collaborations & partnerships</option>
+            <option value="report-user-content">Report Content , Users or issues</option>
+            <option value="others">Others...</option>
+        </select>
+        </div>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="email" value="{{ form.email.value|default:'' }}" name="email" placeholder="Your Email">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <textarea id="textarea" style="resize:none;" class="textarea" placeholder="Message" rows="10" name="message">{{ form.message.value|default:'' }}</textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-large is-info">Submit</button>
+            </div>
+        </div>
+    </form>
+    
+    <p style="font-weight:bold;">This Contact Form Is Temporally , we try to make it better and simple to use !</p>
+    </div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+{%endblock content%}
+</body>
+</html>

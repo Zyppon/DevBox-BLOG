@@ -28,9 +28,52 @@
           <div class="columns">
             <div class="column left">
               <h1 class="title is-1">DevBox Community</h1>
-              
+
+
               <p>Rejoignez notre communauté et commencez à découvrir les histoires, les astuces et les informations uniques les plus intéressantes dans notre domaine.</p>
-              <p>En continuant, vous acceptez</p><a href="{%url 'privacy'%}" id="popout-link">notre politique de confidentialité</a>.
+              <p>En continuant, vous acceptez</p>              
+              
+              <div class="container">
+                <!-- Ouvrez Button -->
+                <a id="openModal">notre politique de confidentialité</a>
+              </div>
+            
+              <!-- Mode pop out -->
+              <div class="modal" id="myModal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <!-- Contenu Pop out -->
+                  <div class="box">
+                    <!-- Content -->
+                    <p>
+                      <h2>Règles de DevBox Community:</h2>
+                      <ul>
+                          <li>Respectez les droits d'auteur et les droits de propriété intellectuelle. Ne copiez pas et ne publiez pas de contenu sans l'autorisation de l'auteur ou du titulaire des droits.</li>
+                          <li>Ne promouvez ni n'encouragez la violence, la haine, la discrimination, le racisme ou d'autres comportements offensants.</li>
+                          <li>Ne publiez ni ne distribuez de contenu sexuellement explicite, de nudité ou de matériel pour adultes.</li>
+                          <li>Respectez la confidentialité et l'intimité des autres personnes. Ne publiez pas d'informations personnelles ou confidentielles sans leur autorisation.</li>
+                          <li>Ne promouvez ni ne soutenez d'activités illégales ou de comportements non éthiques.</li>
+                          <li>Ne publiez ni ne distribuez de contenu qui enfreint les lois ou les politiques locales, nationales ou internationales.</li>
+                          <li>Ne pratiquez pas le trolling, le harcèlement ou l'intimidation envers d'autres utilisateurs.</li>
+                          <li>Ne pas utiliser un langage vulgaire, obscène ou offensant dans les commentaires ou les publications.</li>
+                          <li>Respectez les opinions et les points de vue différents. Ne faites pas d'attaques personnelles ou d'insultes à l'encontre d'autres utilisateurs.</li>
+                          <li>Ne publiez ni ne distribuez de fausses informations, diffamatoires ou calomnieuses.</li>
+                          <li>Ne publiez ni ne distribuez de spam ou de contenu non pertinent.</li>
+                          <li>Respectez les droits de confidentialité des autres personnes. Ne publiez pas de photos ou d'autres matériels qui violent l'intimité ou les droits des autres personnes.</li>
+                          <li>Ne faites pas de publicité ou de promotion inappropriée de produits ou de services.</li>
+                          <li>Ne publiez ni ne distribuez de contenu encourageant des comportements dangereux ou autodestructeurs.</li>
+                          <li>Respectez les droits d'auteur et les droits de propriété intellectuelle d'autres personnes. Ne publiez pas de contenu sans l'autorisation de l'auteur ou du titulaire des droits.</li>
+                          <li>Ne publiez ni ne distribuez de contenu violant les droits de propriété intellectuelle, tels que la musique, les films, les logiciels ou d'autres matériaux protégés par les droits d'auteur.</li>
+                          <li>Ne publiez ni ne distribuez d'informations ou de contenu violant les droits de confidentialité des autres personnes.</li>
+                          <li>Ne publiez ni ne distribuez de contenu en violation des lois ou politiques locales, nationales ou internationales.</li>
+                          <li>Ne publiez ni ne distribuez d'informations fausses, diffamatoires ou calomnieuses sur d'autres personnes ou organisations.</li>
+                          <li>Respectez les règles et politiques de la plateforme de blogs ou de médias sociaux sur laquelle vous publiez. Ne violez pas les termes et conditions du service.</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+              </div>
             </div>
             <div class="column right has-text-centered">
               <h1 class="title is-4">Log In</h1>
@@ -67,26 +110,7 @@
         <div class="column is-8 is-offset-2">
           <br>
           <nav class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <span class="icon">
-                  <i class="fab fa-twitter"></i>
-                </span> &emsp;
-                <span class="icon">
-                  <i class="fab fa-facebook"></i>
-                </span> &emsp;
-                <span class="icon">
-                  <i class="fab fa-instagram"></i>
-                </span> &emsp;
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span> &emsp;
-                <span class="icon">
-                  <i class="fas fa-envelope"></i>
-                </span>
-              </div>
-            </div>
-            <div class="level-right">
+            <div class="level-center">
               <small class="level-item" style="color: var(--textLight)">
                 &copy; DevBox Community. All Rights Reserved.
               </small>
@@ -98,16 +122,25 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script>
-    document.getElementById("popout-link").addEventListener("click", function(event) {
-    event.preventDefault(); // Opriți comportamentul implicit de navigare
-    var url = this.getAttribute("href"); // Obțineți URL-ul din atributul href
-    var width = 600; // Lățimea fereastră
-    var height = 400; // Înălțimea fereastră
-    var left = (screen.width - width) / 2; // Centrarea fereastră pe ecran
-    var top = (screen.height - height) / 2; // Centrarea fereastră pe ecran
-    var options = "width=" + width + ",height=" + height + ",top=" + top + ",left=" + left + ",resizable=yes,scrollbars=yes"; // Opțiunile fereastră
-    window.open(url, "popout_window", options); // Deschideți fereastra pop-out
+    // script.js
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('myModal');
+  const openModalButton = document.getElementById('openModal');
+  const modalCloseButtons = document.querySelectorAll('.modal-close, .modal-background');
+
+  // Deschide modulul la click pe buton
+  openModalButton.addEventListener('click', function () {
+    modal.classList.add('is-active');
+  });
+
+  // Inchide modulul la click pe butonul de inchidere sau pe fundalul modalului
+  modalCloseButtons.forEach(function (element) {
+    element.addEventListener('click', function () {
+      modal.classList.remove('is-active');
+    });
+  });
 });
+
   </script>
   </body>
   <style>

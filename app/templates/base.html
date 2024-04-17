@@ -48,24 +48,27 @@
           <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
                 <div class=" navbar-item">
+                  <form class="form-inline my-2 my-lg-0" action="{% url 'index' %}">
                     <div class="control has-icons-left">
-                      <input class="input is-squared" type="email" placeholder="Chercher">
+                      <input class="input is-squared" type="search" name="search" placeholder="Search...">
                       <span class="icon is-left">
                         <i class="fa fa-search"></i>
                       </span>
                     </div>
+                  </form>
               <a href="/" class="navbar-item is-active is-size-5 is-light">
-                Accueil
+                Home
               </a>
               {% if user.is_authenticated %}
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
-                  <ion-icon name="settings"></ion-icon> Paramètres
+                  <ion-icon name="settings"></ion-icon> Settings
                 </a>
                 <div class="navbar-dropdown">
-                  <a class="navbar-item" href="{%url 'user_settings'%}">Mon Compte</a>
-                  <a class="navbar-item" href="{%url 'add_post'%}">Add Post</a>
-                  <a class="navbar-item" href="{%url 'logout'%}">Deconnexion</a>
+                  <a class="navbar-item" href="{%url 'user_settings'%}"> <ion-icon name="person"></ion-icon> My Account</a>
+                  <a class="navbar-item" href="{%url 'add_post'%}"> <ion-icon name="add-circle"></ion-icon> Add Post</a>
+                  <a class="navbar-item" href="{%url 'update_post'%}"><ion-icon name="pencil"></ion-icon> Edit Posts</a>
+                  <a class="navbar-item" href="{%url 'logout'%}"><ion-icon name="exit"></ion-icon> Disconnect</a>
                 </div>
               </div>
  
@@ -79,12 +82,12 @@
               </a>
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
-                  <ion-icon name="settings"></ion-icon> About Us
+                  <ion-icon name="apps"></ion-icon> About Us
                 </a>
                 <div class="navbar-dropdown">
-                  <a class="navbar-item" href="{%url 'contact'%}">Contact</a>
-                  <a class="navbar-item" href="{%url 'add_post'%}">News</a>
-                  <a class="navbar-item" href="/">FAQ</a>
+                  <a class="navbar-item" href="{%url 'contact'%}"><ion-icon name="mail"></ion-icon> Contact</a>
+                  <a class="navbar-item" href="{%url 'news'%}"><ion-icon name="newspaper"></ion-icon> News</a>
+                  <a class="navbar-item" href="{%url 'about_us'%}"><ion-icon name="help"></ion-icon> FAQ</a>
                 </div>
               </div>
             </div>
@@ -101,18 +104,15 @@
     <footer class="footer">
       <div class="level-center">
         <div class="level-item">
-          <span class="icon">
-            <i class="fab fa-twitter"></i>
+          <span class="is-size-2">
+            <a href="https://discord.gg/dNzSnzEq"><ion-icon name="logo-discord"></ion-icon></a>
           </span> 
-          <span class="icon">
-            <i class="fab fa-facebook"></i>
-          </span> 
-          <span class="icon">
-            <i class="fab fa-instagram"></i>
+          <span class="is-size-2">
+            <a href="https://www.instagram.com/devbox.community/"><ion-icon name="logo-instagram"></ion-icon></a>
           </span> 
           <span class="is-size-2">
             <a href="https://github.com/Zyppon"><ion-icon name="logo-github"></ion-icon></a>
-          
+          </span>
           <span class="is-size-2">
             <a href="{%url 'contact'%}"><ion-icon name="mail"></ion-icon></a>
           </span>
@@ -122,7 +122,44 @@
             <p>
               &copy; DevBox Community. All Rights Reserved.
             </p>
+            <p>Coordinator : dumitrache.edi.valentin@gmail.com</p>
+            <a id="openModal">Our Privacy Policy</a>
         </div>
+
+        <div class="modal" id="myModal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <!-- Content Pop out -->
+            <div class="box">
+              <!-- Content -->
+              <p>
+                <h2 class="text is-title">DevBox Community Rules:</h2>
+                  <ol>
+                    <li>Respect copyrights and intellectual property rights. Do not copy or publish content without the permission of the author or rights holder.</li>
+                    <li>Do not promote or encourage violence, hatred, discrimination, racism or other offensive behaviour</li>
+                    <li>Do not post or distribute sexually explicit content, nudity, or adult material.</li>
+                    <li>Respect the confidentiality and privacy of others. Don't post personal or confidential information without their permission.</li>
+                    <li>Do not promote or support illegal activities or unethical behavior.</li>
+                    <li>Do not post or distribute content that violates any local, national, or international laws or policies.</li>
+                    <li>Do not troll, harass or intimidate other users.</li>
+                    <li>Do not use vulgar, obscene or offensive language in comments or posts.</li>
+                    <li>Respect different opinions and points of view. Don't make personal attacks or insults at other users.</li>
+                    <li>Do not post or distribute spam or irrelevant content.</li>
+                    <li>Respect the privacy rights of others. Don't post photos or other material that violates other people's privacy or rights.</li>
+                    <li>Do not inappropriately advertise or promote products or services.</li>
+                    <li>Don't post or distribute content that encourages dangerous or self-destructive behavior.</li>
+                    <li>Respect other people's copyrights and intellectual property rights. Don't post content without permission from the author or rights holder.</li>
+                    <li>Do not post or distribute content that violates intellectual property rights, such as music, movies, software, or other copyrighted materials.</li>
+                    <li>Do not post or distribute information or content that violates the privacy rights of others.</li>
+                    <li>Do not post or distribute false, defamatory, or libelous information about other people or organizations.</li>
+                    <li>Respect the rules and policies of the blogging or social media platform you're posting on. Do not violate the terms and conditions of the service.</li>
+                  </ol>
+              </p>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+      </div>
     </footer>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -153,6 +190,25 @@
 
 
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+const modal = document.getElementById('myModal');
+const openModalButton = document.getElementById('openModal');
+const modalCloseButtons = document.querySelectorAll('.modal-close, .modal-background');
+
+// Open button click mode
+openModalButton.addEventListener('click', function () {
+  modal.classList.add('is-active');
+});
+
+// Close pop out 
+modalCloseButtons.forEach(function (element) {
+  element.addEventListener('click', function () {
+    modal.classList.remove('is-active');
+  });
+});
+});
+
 
 
   </script>

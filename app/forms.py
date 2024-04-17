@@ -1,8 +1,11 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
 from .models import BlogPost
 from markdownx.widgets import MarkdownxWidget
+from django.contrib.auth.forms import PasswordChangeForm
+
+
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -25,6 +28,30 @@ class NewUserForm(UserCreationForm):
        except User.DoesNotExist:
            return email
        raise forms.ValidationError("L'adresse email est déjà enregistrée.")
+
+class UserSettingsForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+       # email = cleaned_data.get("email")
+
+        if not username:
+            raise forms.ValidationError("At least one field must be filled.")
+
+        if username:
+            if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+                raise forms.ValidationError("A user with this username already exists.")
+        
+       # if email:
+           # if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+              #  raise forms.ValidationError("A user with this email already exists.")
+
+        return cleaned_data
        
 class LoginForm(forms.Form):
     email = forms.EmailField()
@@ -46,3 +73,24 @@ class ContactForm(forms.Form):
     message = forms.CharField(label='Message', widget=forms.Textarea)
     category = forms.ChoiceField(choices=[('general-questions', 'General Questions'), ('sugestions-feedback', 'Sugestions & Feedback'),('report-bugs','Report Bugs'),('colab-partner', 'Collaborations & partnerships'), ('report-user-content', 'Report Content , Users or issues'),('others','Others...')])
 
+
+class PasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs.update({'class': 'form-control'})
+        self.fields['new_password1'].widget.attrs.update({'class': 'form-control'})
+        self.fields['new_password2'].widget.attrs.update({'class': 'form-control'})
+
+    def clean_old_password(self):
+        """
+        Validate that the old password is correct.
+        """
+        old_password = self.cleaned_data["old_password"]
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError("Your old password was entered incorrectly. Please enter it again.")
+        return old_password
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = ['title','body']

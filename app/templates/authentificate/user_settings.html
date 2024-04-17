@@ -1,0 +1,127 @@
+{%extends 'base.html'%}
+{%load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet prefetch' href='https://unpkg.com/bulma@0.9.4/css/bulma.min.css'>
+    <title>{%block title%}{%endblock%}</title>
+    <style>
+        .accordion-content {
+            display: none;
+        }
+        .accordion-button[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <section class="container">
+        <h1 class="title has-text-centered">User Settings</h1>
+        {% if messages %}
+        <div class="notification is-gray">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form method="post" action="{% url 'user_settings' %}" class="container" name="UserSettingsForm">
+            {% csrf_token %} 
+            <div class="field">
+                <label class="label">Username</label>
+                <div class="control has-icons-left">
+                    <input class="input is-medium" type="text" placeholder="Your Username" name="username" value="{{ form.username.value|default:user.username }}">
+                    <span class="icon is-small is-left">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                </div>
+            </div>
+            <div class="notification is-danger">
+                <p class="has-text-centered">
+                    <ion-icon name="lock-closed"></ion-icon> We are Sorry, but you can't change your email at this moment. Please try later!
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-left">
+                    <input class="input is-medium" type="email" placeholder="Your Email" disabled="disabled" name="email" value="{{ form.email.value|default:user.email }}">
+                    <span class="icon is-small is-left">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                <a href="{% url 'change_password'%}" class="button is-block is-info is-fullwidth is-medium">Change Your Password</a>
+            </div>
+            <!-- Save and cancel buttons -->
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-success is-medium">Save</button>
+                </div>
+                <div class="control">
+                    <a href="{% url 'index'%}" class="button is-danger is-medium">Cancel</a>
+                </div>
+            </div>
+            <br>
+        </form>
+        
+        <!-- Separate form for account deletion -->
+        <form method="post">
+            {% csrf_token %} 
+            <div class="field">
+                <div class="control">
+                    <button type="submit" name="delete_account" class="button is-danger is-fullwidth is-medium">Delete Account</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const content = accordionItem.querySelector('.accordion-content');
+                    const button = accordionItem.querySelector('.accordion-button');
+
+                    const expanded = button.getAttribute('aria-expanded') === 'true';
+
+                    content.style.display = expanded ? 'none' : 'block';
+                    button.setAttribute('aria-expanded', !expanded);
+                });
+            });
+        });
+
+        $(document).ready(function() {
+    $('#delete-user-btn').click(function() {
+        if (confirm("Are You Sure You Want To Delete Your Account?")) {
+            $.ajax({
+                type: 'POST',
+                url: 'settings/',
+                data: {
+                    'delete_user': true,
+                    'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        window.location.href = 'login/'; // Redirecționare către pagina de autentificare după ștergere
+                    } else {
+                        alert(response.message); // Afișare mesaj de eroare
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // Afișare eroare în consolă
+                }
+            });
+        }
+    });
+});
+    </script>
+    {% endblock %}
+    
+</body>
+</html>

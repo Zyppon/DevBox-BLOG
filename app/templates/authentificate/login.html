@@ -23,19 +23,19 @@
       <div class="columns is-multiline">
         <div class="column is-8 is-offset-2 register">
           <a href="/" class="return-button has-background-link">
-            <ion-icon name="arrow-back-circle"></ion-icon> Retour
+            <ion-icon name="arrow-back-circle"></ion-icon> Return
           </a>
           <div class="columns">
             <div class="column left">
               <h1 class="title is-1">DevBox Community</h1>
 
 
-              <p>Rejoignez notre communauté et commencez à découvrir les histoires, les astuces et les informations uniques les plus intéressantes dans notre domaine.</p>
-              <p>En continuant, vous acceptez</p>              
+              <p>Join our community and start discovering the most interesting stories, tips, and unique insights in our field.</p>
+              <p>By continuing, you agree</p>              
               
               <div class="container">
                 <!-- Ouvrez Button -->
-                <a id="openModal">notre politique de confidentialité</a>
+                <a id="openModal">Our Privacy Policy</a>
               </div>
             
               <!-- Mode pop out -->
@@ -46,29 +46,27 @@
                   <div class="box">
                     <!-- Content -->
                     <p>
-                      <h2>Règles de DevBox Community:</h2>
-                      <ul>
-                          <li>Respectez les droits d'auteur et les droits de propriété intellectuelle. Ne copiez pas et ne publiez pas de contenu sans l'autorisation de l'auteur ou du titulaire des droits.</li>
-                          <li>Ne promouvez ni n'encouragez la violence, la haine, la discrimination, le racisme ou d'autres comportements offensants.</li>
-                          <li>Ne publiez ni ne distribuez de contenu sexuellement explicite, de nudité ou de matériel pour adultes.</li>
-                          <li>Respectez la confidentialité et l'intimité des autres personnes. Ne publiez pas d'informations personnelles ou confidentielles sans leur autorisation.</li>
-                          <li>Ne promouvez ni ne soutenez d'activités illégales ou de comportements non éthiques.</li>
-                          <li>Ne publiez ni ne distribuez de contenu qui enfreint les lois ou les politiques locales, nationales ou internationales.</li>
-                          <li>Ne pratiquez pas le trolling, le harcèlement ou l'intimidation envers d'autres utilisateurs.</li>
-                          <li>Ne pas utiliser un langage vulgaire, obscène ou offensant dans les commentaires ou les publications.</li>
-                          <li>Respectez les opinions et les points de vue différents. Ne faites pas d'attaques personnelles ou d'insultes à l'encontre d'autres utilisateurs.</li>
-                          <li>Ne publiez ni ne distribuez de fausses informations, diffamatoires ou calomnieuses.</li>
-                          <li>Ne publiez ni ne distribuez de spam ou de contenu non pertinent.</li>
-                          <li>Respectez les droits de confidentialité des autres personnes. Ne publiez pas de photos ou d'autres matériels qui violent l'intimité ou les droits des autres personnes.</li>
-                          <li>Ne faites pas de publicité ou de promotion inappropriée de produits ou de services.</li>
-                          <li>Ne publiez ni ne distribuez de contenu encourageant des comportements dangereux ou autodestructeurs.</li>
-                          <li>Respectez les droits d'auteur et les droits de propriété intellectuelle d'autres personnes. Ne publiez pas de contenu sans l'autorisation de l'auteur ou du titulaire des droits.</li>
-                          <li>Ne publiez ni ne distribuez de contenu violant les droits de propriété intellectuelle, tels que la musique, les films, les logiciels ou d'autres matériaux protégés par les droits d'auteur.</li>
-                          <li>Ne publiez ni ne distribuez d'informations ou de contenu violant les droits de confidentialité des autres personnes.</li>
-                          <li>Ne publiez ni ne distribuez de contenu en violation des lois ou politiques locales, nationales ou internationales.</li>
-                          <li>Ne publiez ni ne distribuez d'informations fausses, diffamatoires ou calomnieuses sur d'autres personnes ou organisations.</li>
-                          <li>Respectez les règles et politiques de la plateforme de blogs ou de médias sociaux sur laquelle vous publiez. Ne violez pas les termes et conditions du service.</li>
-                      </ul>
+                      <h2>DevBox Community Rules:</h2>
+                        <ol>
+                          <li>Respect copyrights and intellectual property rights. Do not copy or publish content without the permission of the author or rights holder.</li>
+                          <li>Do not promote or encourage violence, hatred, discrimination, racism or other offensive behaviour</li>
+                          <li>Do not post or distribute sexually explicit content, nudity, or adult material.</li>
+                          <li>Respect the confidentiality and privacy of others. Don't post personal or confidential information without their permission.</li>
+                          <li>Do not promote or support illegal activities or unethical behavior.</li>
+                          <li>Do not post or distribute content that violates any local, national, or international laws or policies.</li>
+                          <li>Do not troll, harass or intimidate other users.</li>
+                          <li>Do not use vulgar, obscene or offensive language in comments or posts.</li>
+                          <li>Respect different opinions and points of view. Don't make personal attacks or insults at other users.</li>
+                          <li>Do not post or distribute spam or irrelevant content.</li>
+                          <li>Respect the privacy rights of others. Don't post photos or other material that violates other people's privacy or rights.</li>
+                          <li>Do not inappropriately advertise or promote products or services.</li>
+                          <li>Don't post or distribute content that encourages dangerous or self-destructive behavior.</li>
+                          <li>Respect other people's copyrights and intellectual property rights. Don't post content without permission from the author or rights holder.</li>
+                          <li>Do not post or distribute content that violates intellectual property rights, such as music, movies, software, or other copyrighted materials.</li>
+                          <li>Do not post or distribute information or content that violates the privacy rights of others.</li>
+                          <li>Do not post or distribute false, defamatory, or libelous information about other people or organizations.</li>
+                          <li>Respect the rules and policies of the blogging or social media platform you're posting on. Do not violate the terms and conditions of the service.</li>
+                        </ol>
                     </p>
                   </div>
                 </div>
@@ -77,7 +75,7 @@
             </div>
             <div class="column right has-text-centered">
               <h1 class="title is-4">Log In</h1>
-              <p class="description">Nous sommes heureux de vous revoir! Veuillez vous connecter pour accéder à votre compte.</p>
+              <p class="description">We look forward to seeing you again! Please log in to access your account.</p>
               {% if messages %}
               <div class="error-message">
                   {% for message in messages %}
@@ -100,8 +98,8 @@
                 </div>
                 <button type="submit" class="button is-block is-link is-fullwidth is-medium">Log In</button>
                 <br />
-                <p>Mot de passe oublié ?</p> <a href="{%url 'reset_password'%}">Réinitialiser le mot de passe</a>
-                <p>Vous n'avez pas encore un compte ?</p><a href="{% url 'register' %}">Inscrivez-vous ici</a>
+                <p>Forgot Your Password?</p> <a href="{%url 'reset_password'%}">Reset Your Password</a>
+                <p>You don't have an account yet?</p><a href="{% url 'register' %}">Register</a>
               </form>
               
             </div>

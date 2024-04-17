@@ -15,7 +15,15 @@ class BlogPost(models.Model):
 
         return self.title
 
-class VerificationCode(models.Model):
-    code = models.CharField(max_length=6)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+class NewsPost(models.Model):
+
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+
+    def __str__(self):
+
+        return self.title
+
+
 

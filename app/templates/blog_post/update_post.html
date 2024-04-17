@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{%load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{%endblock%}</title>
+</head>
+<body>
+    {%block content%}
+    {% if messages %}
+    <div class="notification is-gray">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <section class="container">
+        <div class="columns features">
+            {% for post in posts %}
+          <div class="column is-4">
+            <div class="card is-shady">
+              <div class="card-image">
+                {% if post.image %}
+                <figure class="image is-4by3">
+                  <img src="{{post.image.url}}" alt="{{post.title}}" class="modal-button" data-target="modal-image2">
+                </figure>
+                {%endif%}
+              <div class="card-content">
+                <div class="content">
+                  <h4>{{post.title}}</h4>
+                  <p length="30">gg</p>
+                  <div class="field is-horizontal">
+                  <a  class="button is-link modal-button" href="{%url 'edit_post_view' post_id=post.id %}" data-target="modal-image2">Edit</a>
+                  <form method="post">
+                    {% csrf_token %}
+                  <button type="submit" name="delete_post" class="button is-danger modal-button" value="{{post.id}}" data-target="modal-image2">Delete</button>
+                  </form>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          {% empty %}
+          <div>
+              <p class="title has-text-centered">You Don't have any Post Here !</p>
+              <p class="has-text-centered"> Let's Start To <a href="{%url 'add_post'%}">Create A Post</a></p>
+          </div>
+          {%endfor%}
+    </div>
+    </section>
+
+    
+          {%endblock%}
+</body>
+</html>

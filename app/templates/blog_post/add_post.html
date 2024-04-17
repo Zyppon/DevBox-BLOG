@@ -29,6 +29,7 @@
     <br>
     <button  id="btn-code" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
     <button id="btn-bold-text" class="button is-medium is-info">B</button>
+    <button id="btn-image-markdown" class="button is-medium is-info"><ion-icon name="image"></ion-icon></button>
     <br>
     <br>
     <form method="post" action="{% url 'add_post' %}" enctype="multipart/form-data">
@@ -72,6 +73,11 @@ document.getElementById("btn-code").addEventListener('click', () => {
 document.getElementById("btn-bold-text").addEventListener('click', () => {
         let textarea = document.getElementById("textarea");
         textarea.value += '\n**    **';
+    });
+
+document.getElementById("btn-image-markdown").addEventListener('click', () => {
+        let textarea = document.getElementById("textarea");
+        textarea.value += '\n![Alt text](IMAGE_URL)';
     });
     
 const fileInput = document.querySelector('#file-js-example input[type=file]');

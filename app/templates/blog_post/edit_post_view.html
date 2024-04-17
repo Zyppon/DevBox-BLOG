@@ -1,0 +1,74 @@
+{%extends 'base.html'%}
+{%load static%}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{%endblock%}</title>
+</head>
+<body>
+    {%block content%}
+      <div class="container has-text-centered">
+        <h1 style="     font-weight:bold; font-size:30px;">Edit Your Post</h1>
+        <br>
+        <button  id="btn-code" class="button is-medium is-info"><ion-icon name="code-slash"></ion-icon></button>
+        <button id="btn-bold-text" class="button is-medium is-info">B</button>
+        <br>
+        <br>
+        <form method="post"  enctype="multipart/form-data">
+            {%csrf_token%}
+            <div id="file-js-example" class="file has-name is-flex is-align-items-center is-justify-content-center">
+              <label class="file-label">
+                <input class="file-input" value="{{form.image.value}}" name="image" type="file">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file
+                  </span>
+                </span>
+                <span class="file-name">
+                    No file uploaded
+                </span>
+              </label>
+            </div>
+            <br>
+            <br>
+            <input class="input is-large" type="text" value="{{ form.title.value }}" name="title" placeholder="Title">
+            <br>
+            <br>
+            <textarea id="textarea" style="resize:none;" class="textarea" placeholder="10 lines of textarea" rows="10" value="{{ form.body.value|default:''}}" name="body">{{ form.body.value}}</textarea>
+            <br>
+            <button  type="submit" class="button is-large is-info">Edit Post</button>
+        </form>
+        <p style="font-weight:bold;">This Editor Is Temporally , we try to make it better and simple to use !</p>
+        </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+    
+    document.getElementById("btn-code").addEventListener('click', () => {
+            let textarea = document.getElementById("textarea");
+            textarea.value += '\n```                ```';
+        });
+    
+    document.getElementById("btn-bold-text").addEventListener('click', () => {
+            let textarea = document.getElementById("textarea");
+            textarea.value += '\n**    **';
+        });
+        
+    const fileInput = document.querySelector('#file-js-example input[type=file]');
+      fileInput.onchange = () => {
+        if (fileInput.files.length > 0) {
+          const fileName = document.querySelector('#file-js-example .file-name');
+          fileName.textContent = fileInput.files[0].name;
+        }
+      }
+       
+    </script>
+
+    {%endblock%}
+</body>
+</html>

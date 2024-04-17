@@ -21,17 +21,17 @@
       <div class="columns is-multiline">
         <div class="column is-8 is-offset-2 register">
           <a href="/" class="return-button has-background-link">
-            <ion-icon name="arrow-back-circle"></ion-icon> Retour
+            <ion-icon name="arrow-back-circle"></ion-icon> Return
           </a>
           <div class="columns">
             <div class="column left">
               <h1 class="title is-1">DevBox Community</h1>
-              <h2 class="subtitle colored is-4 has-text-link">Inscrivez-vous maintenant pour recevoir des nouvelles exclusives</h2>
-              <p>Rejoignez notre communauté et commencez à découvrir les histoires, les astuces et les informations uniques les plus intéressantes dans notre domaine. Inscrivez-vous maintenant et entrez dans notre monde de connaissances et d'inspiration.</p>
+              <h2 class="subtitle colored is-4 has-text-link">Sign up now to receive exclusive news</h2>
+              <p>Join our community and start discovering the most interesting stories, tips, and unique insights in our field. Sign up now and enter our world of knowledge and inspiration.</p>
             </div>
             <div class="column right has-text-centered">
-              <h1 class="title is-4">Sign up aujourd'hui</h1>
-              <p class="description">Assurez-vous de créer un mot de passe fort avec un minimum de 8 caractères contenant des lettres, des chiffres et des symboles</p>
+              <h1 class="title is-4">Sign up Today</h1>
+              <p class="description">Be sure to create a strong password with a minimum of 8 characters containing letters, numbers, and symbols</p>
               {% if form.errors.email %}
               <div class="error-message">{{ form.errors.email }}</div>
               {% endif %}
@@ -52,52 +52,52 @@
                 </div>
                 <div class="field">
                     <div class="control">
-                      <input class="input is-medium" type="password" placeholder="mot de passe" name="password1" value="{{ form.password1.value|default:"" }}">
+                      <input class="input is-medium" type="password" placeholder="Password" name="password1" value="{{ form.password1.value|default:"" }}">
                     </div>
                 </div>
 
                 <div class="field">
                     <div class="control">
-                      <input class="input is-medium" type="password" placeholder="confirme le mot de passe" name="password2" value="{{ form.password2.value|default:"" }}">
+                      <input class="input is-medium" type="password" placeholder="Confirm Password" name="password2" value="{{ form.password2.value|default:"" }}">
                     </div>
                 </div>
-                <button class="button is-block is-info is-fullwidth is-medium">Submit</button>
+                <button class="button is-block is-info is-fullwidth is-medium">Register</button>
                 <br />
-                <small><em>Avant de créer un nouveau compte.Oublies pas de verifiez nos</em></small>                  <div class="container">
+                <small><em>Before you create a new account. Don't forget to check our</em></small>                  
+                <div class="container">
                   <!-- Ouvrez Button -->
-                  <a id="openModal">régles</a>
+                  <a id="openModal">Our Privacy Policy</a>
                 </div>
               
                 <!-- Mode pop out -->
                 <div class="modal" id="myModal">
                   <div class="modal-background"></div>
                   <div class="modal-content">
-                    <!-- Contenu Pop out -->
+                    <!-- Content Pop out -->
                     <div class="box">
                       <!-- Content -->
                       <p>
-                        <h2>Règles de DevBox Community:</h2>
-                            <li>Respectez les droits d'auteur et les droits de propriété intellectuelle. Ne copiez pas et ne publiez pas de contenu sans l'autorisation de l'auteur ou du titulaire des droits.</li>
-                            <li>Ne promouvez ni n'encouragez la violence, la haine, la discrimination, le racisme ou d'autres comportements offensants.</li>
-                            <li>Ne publiez ni ne distribuez de contenu sexuellement explicite, de nudité ou de matériel pour adultes.</li>
-                            <li>Respectez la confidentialité et l'intimité des autres personnes. Ne publiez pas d'informations personnelles ou confidentielles sans leur autorisation.</li>
-                            <li>Ne promouvez ni ne soutenez d'activités illégales ou de comportements non éthiques.</li>
-                            <li>Ne publiez ni ne distribuez de contenu qui enfreint les lois ou les politiques locales, nationales ou internationales.</li>
-                            <li>Ne pratiquez pas le trolling, le harcèlement ou l'intimidation envers d'autres utilisateurs.</li>
-                            <li>Ne pas utiliser un langage vulgaire, obscène ou offensant dans les commentaires ou les publications.</li>
-                            <li>Respectez les opinions et les points de vue différents. Ne faites pas d'attaques personnelles ou d'insultes à l'encontre d'autres utilisateurs.</li>
-                            <li>Ne publiez ni ne distribuez de fausses informations, diffamatoires ou calomnieuses.</li>
-                            <li>Ne publiez ni ne distribuez de spam ou de contenu non pertinent.</li>
-                            <li>Respectez les droits de confidentialité des autres personnes. Ne publiez pas de photos ou d'autres matériels qui violent l'intimité ou les droits des autres personnes.</li>
-                            <li>Ne faites pas de publicité ou de promotion inappropriée de produits ou de services.</li>
-                            <li>Ne publiez ni ne distribuez de contenu encourageant des comportements dangereux ou autodestructeurs.</li>
-                            <li>Respectez les droits d'auteur et les droits de propriété intellectuelle d'autres personnes. Ne publiez pas de contenu sans l'autorisation de l'auteur ou du titulaire des droits.</li>
-                            <li>Ne publiez ni ne distribuez de contenu violant les droits de propriété intellectuelle, tels que la musique, les films, les logiciels ou d'autres matériaux protégés par les droits d'auteur.</li>
-                            <li>Ne publiez ni ne distribuez d'informations ou de contenu violant les droits de confidentialité des autres personnes.</li>
-                            <li>Ne publiez ni ne distribuez de contenu en violation des lois ou politiques locales, nationales ou internationales.</li>
-                            <li>Ne publiez ni ne distribuez d'informations fausses, diffamatoires ou calomnieuses sur d'autres personnes ou organisations.</li>
-                            <li>Respectez les règles et politiques de la plateforme de blogs ou de médias sociaux sur laquelle vous publiez. Ne violez pas les termes et conditions du service.</li>
-                        
+                        <h2 class="text is-title">DevBox Community Rules:</h2>
+                          <ol>
+                            <li>Respect copyrights and intellectual property rights. Do not copy or publish content without the permission of the author or rights holder.</li>
+                            <li>Do not promote or encourage violence, hatred, discrimination, racism or other offensive behaviour</li>
+                            <li>Do not post or distribute sexually explicit content, nudity, or adult material.</li>
+                            <li>Respect the confidentiality and privacy of others. Don't post personal or confidential information without their permission.</li>
+                            <li>Do not promote or support illegal activities or unethical behavior.</li>
+                            <li>Do not post or distribute content that violates any local, national, or international laws or policies.</li>
+                            <li>Do not troll, harass or intimidate other users.</li>
+                            <li>Do not use vulgar, obscene or offensive language in comments or posts.</li>
+                            <li>Respect different opinions and points of view. Don't make personal attacks or insults at other users.</li>
+                            <li>Do not post or distribute spam or irrelevant content.</li>
+                            <li>Respect the privacy rights of others. Don't post photos or other material that violates other people's privacy or rights.</li>
+                            <li>Do not inappropriately advertise or promote products or services.</li>
+                            <li>Don't post or distribute content that encourages dangerous or self-destructive behavior.</li>
+                            <li>Respect other people's copyrights and intellectual property rights. Don't post content without permission from the author or rights holder.</li>
+                            <li>Do not post or distribute content that violates intellectual property rights, such as music, movies, software, or other copyrighted materials.</li>
+                            <li>Do not post or distribute information or content that violates the privacy rights of others.</li>
+                            <li>Do not post or distribute false, defamatory, or libelous information about other people or organizations.</li>
+                            <li>Respect the rules and policies of the blogging or social media platform you're posting on. Do not violate the terms and conditions of the service.</li>
+                          </ol>
                       </p>
                     </div>
                   </div>
@@ -213,12 +213,12 @@ const modal = document.getElementById('myModal');
 const openModalButton = document.getElementById('openModal');
 const modalCloseButtons = document.querySelectorAll('.modal-close, .modal-background');
 
-// Deschide modulul la click pe buton
+// Open button click mode
 openModalButton.addEventListener('click', function () {
   modal.classList.add('is-active');
 });
 
-// Inchide modulul la click pe butonul de inchidere sau pe fundalul modalului
+// Close pop out 
 modalCloseButtons.forEach(function (element) {
   element.addEventListener('click', function () {
     modal.classList.remove('is-active');

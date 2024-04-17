@@ -1,70 +1,13 @@
-.banner-logo {
-    height:150px;
-    width:300px;
-}
 
-.principal-logo {
-    height:150px;
-    width:60px;
-}
 
-.return-button {
-   /* background-color:#74b9ff; */
-    background-color:#00c4a7;
-    border-color:transparent;
-    padding:10px;
-    border-radius:10px;
-    font-size: 20px;
-    color:#fff;
-}
 .error-message {
     background-color:red;
     padding:5%;
     border-radius:5%;
     
 }
-.typewriter h1 {
-    color: #000000;
-    font-family: monospace;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid rgb(0, 0, 0); /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation: 
-      typing 3.5s steps(20, end),
-      blink-caret .5s step-end infinite;
-  }
-  
-  /* The typing effect */
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 20% }
-  }
-  
-  /* The typewriter cursor effect */
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: rgb(0, 0, 0) }
-  }
-
   .container-blog-post {
     display:flex;
     flex-direction:column;
     background-color: #000000;
   }
-
-
-  /* Stiluri implicite pentru CKEditor */
-.cke_editable {
-  text-align: center; /* Aliniere text la mijloc */
-}
-
-/* Alte stiluri specifice pot fi adăugate aici */
-
-.cke_editable img {
-  max-width: 100%; /* Imaginele nu vor depăși lățimea containerului */
-  height: auto;    /* Păstrează proporțiile imaginii */
-  width: 300px;     /* Lățimea maximă a imaginii */
-  /* Alte stiluri specifice pentru imagini pot fi adăugate aici */
-}

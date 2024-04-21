@@ -43,7 +43,7 @@ INSTALLED_APPS = [
    # 'django.contrib.auth.forms', 
     'app',
     'cloudinary',
-    'cloudinary_storage'
+   # 'cloudinary_storage'
     
 ]
 

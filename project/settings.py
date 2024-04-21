@@ -63,6 +63,8 @@ cloudinary.config(
     secure=True,
 )
 
+CSRF_COOKIE_SECURE = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware", #WhiteNoise MiddleWare

@@ -23,4 +23,3 @@ pytz==2023.10
 requests==2.26.0
 tzdata==2023.11
 urllib3==1.26.8
-incearca sa inlocuiesti cu asta

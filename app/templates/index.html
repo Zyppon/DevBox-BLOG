@@ -39,7 +39,7 @@
             <div class="content is-medium">
               <h2 class="subtitle is-4">{{post.date_posted}}</h2>
               <h1 class="title"><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h1>
-              <p>Intro</p>
+              
               <p>Created by {{ post.author.username }}</p>
             </div>
           </div>

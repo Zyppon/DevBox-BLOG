@@ -3,7 +3,7 @@ bleach==6.1.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
 cloudinary==1.40.0
-Django==5.0.4
+Django==5.0.2
 django-ckeditor==6.7.1
 django-js-asset==2.2.0
 django-markdownx==4.0.7

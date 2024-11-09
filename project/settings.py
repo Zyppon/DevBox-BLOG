@@ -36,7 +36,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'devbox.blog',  
+    'https://devbox.blog',  
 ]
 
 
@@ -116,9 +116,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'GnWmxzmVNEESYsvuYSJkSyiyeLZJJPtT',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '25996',
+        'PASSWORD': 'tHrpoBCAESgJgzVUVIhDEVwfoyTKAXQq',
+        'HOST': 'web-production-acea.up.railway.app',
+        #'PORT': '5432',
+        'PORT':'36983',
     }
 }
 

@@ -117,7 +117,7 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'tHrpoBCAESgJgzVUVIhDEVwfoyTKAXQq',
-        'HOST': 'web-production-acea.up.railway.app',
+        'HOST': 'autorack.proxy.rlwy.net',
         #'PORT': '5432',
         'PORT':'36983',
     }

@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import cloudinary
 from dotenv import load_dotenv
+#from django.core.management.utils import get_random_secret_key
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,16 +29,16 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
+#print(get_random_secret_key())
 # Application definition
 # settings.py
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://devbox.blog',  
-]
+#CSRF_TRUSTED_ORIGINS = [
+  #  'devbox.blog',  
+#]
 
 
 INSTALLED_APPS = [
@@ -116,10 +117,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'tHrpoBCAESgJgzVUVIhDEVwfoyTKAXQq',
-        'HOST': 'autorack.proxy.rlwy.net',
-        #'PORT': '5432',
-        'PORT':'36983',
+        'PASSWORD': 'EAgxEWRtMAKYrFCMixKtOVjjBsIJIZLW',
+        'HOST': 'maglev.proxy.rlwy.net',
+        'PORT': '40358',
     }
 }
 
